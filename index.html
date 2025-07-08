@@ -63,14 +63,13 @@
             padding: 10px 25px;
             text-decoration: none;
             border-radius: 5px;
-            transition: background 0.5s ease, border 0.3s ease; /* Hozzáadva a border transzicióhoz */
+            transition: background 0.5s ease;
             cursor: pointer;
-            border: 1px solid transparent; /* Alapértelmezett vékony, átlátszó keret */
+            border: none;
             font-size: 1em;
         }
         .btn:hover {
             background: #5588cc;
-            border: 1px solid black; /* Hover effekthez fekete keret */
         }
         .section {
             padding: 40px 0;
@@ -191,6 +190,14 @@
         footer .contact-info p {
             margin: 5px 0;
         }
+        footer .contact-info a { /* Új stílus a lábléc linkekhez */
+            color: #fff;
+            text-decoration: none;
+            cursor: pointer;
+        }
+        footer .contact-info a:hover { /* Új stílus a lábléc linkekhez */
+            text-decoration: underline;
+        }
 
         /* Táblázat stílusok */
         .tour-table-section {
@@ -250,7 +257,6 @@
             /* A display:flex-et a JavaScript adja hozzá megnyitáskor */
             align-items: center;
             justify-content: center;
-            overflow-y: auto; /* Scroll for modal content */
         }
         .modal-content {
             background:#fff;
@@ -261,7 +267,8 @@
             position:relative;
             box-shadow: 0 5px 15px rgba(0,0,0,0.3);
             text-align: left;
-            margin: 20px auto; /* Add margin for better spacing on smaller screens */
+            max-height: 80vh; /* Maximális magasság a görgetéshez */
+            overflow-y: auto; /* Görgetés, ha a tartalom hosszabb, mint a modál */
         }
         .modal-close {
             position:absolute;
@@ -276,9 +283,27 @@
             margin-bottom: 25px;
             color: #77aaff;
         }
-        .modal-content p {
+        .modal-content h3 { /* Új stílus az alfejlécekhez a modálban */
+            color: #333;
+            margin-top: 20px;
+            margin-bottom: 10px;
+        }
+        .modal-content p, .modal-content ul { /* A modálon belüli paragrafusok és listák */
             margin-bottom: 15px;
             line-height: 1.5;
+            font-size: 0.95em;
+        }
+        .modal-content ul {
+            list-style: disc; /* Visszaállítja a lista stílust */
+            padding-left: 20px;
+        }
+        .modal-content ul li {
+            margin-bottom: 5px;
+            font-size: 1em; /* Az alaplista elemek kisebb betűmérete */
+            display: list-item; /* Visszaállítja a lista elem megjelenését */
+        }
+        .modal-content ul li::before { /* Eltávolítja a '✔️' ikonokat a modál listáiból */
+            content: none;
         }
         .modal-content p.small-text {
             font-size: 0.85em;
@@ -325,17 +350,6 @@
         }
         .modal-content .checkbox-container input[type="checkbox"] {
             margin-right: 10px;
-            min-width: 16px; /* Ensure checkbox is visible on all screens */
-            min-height: 16px;
-        }
-        .modal-content .checkbox-container label a {
-            color: #77aaff; /* Link color for privacy policy */
-            text-decoration: underline;
-        }
-        .modal-content .checkbox-container label {
-            font-size: 0.85em; /* Smaller font for checkbox label */
-            color: #555;
-            font-weight: normal;
         }
         .mobile-package-panels {
             display: none;
@@ -374,7 +388,7 @@
             .price-card {
                 flex-basis: 100%;
                 width: 100%;
-                margin: 20;
+                margin: 0;
                 max-width: 350px;
                 padding: 20px;
             }
@@ -521,7 +535,8 @@
         <div class="pricing-table">
             <div class="price-card">
                 <h3>Alap Csomag</h3>
-                <p class="price" data-package-type="Alap Csomag"></p> <p>(2 főre, 4 nap / 3 éjszaka)</p>
+                <p class="price">3.950 €</p>
+                <p>(2 főre, 4 nap / 3 éjszaka)</p>
                 <ul>
                     <li>Gazdaságos választás</li>
                     <li>4 nap / 3 éjszaka</li>
@@ -537,7 +552,8 @@
             </div>
             <div class="price-card">
                 <h3>Bővített Csomag</h3>
-                <p class="price" data-package-type="Bővített Csomag"></p> <p>(2 főre, 5 nap / 4 éjszaka)</p>
+                <p class="price">4.950 €</p>
+                <p>(2 főre, 5 nap / 4 éjszaka)</p>
                 <ul>
                     <li>5 nap / 4 éjszaka</li>
                     <li>4* szálloda félpanzióval</li>
@@ -754,7 +770,7 @@
             <input id="address" name="address" placeholder="Pl. Petőfi utca 12." required="" type="text"/>
             <div class="checkbox-container">
                 <input id="termsAccepted" name="termsAccepted" required="" type="checkbox"/>
-                <label for="termsAccepted">Az Adatvédelmi nyilatkozat irányelveit megismertem és elfogadom. (<a href="#" class="open-privacy-policy-link">Adatvédelmi nyilatkozat</a>)</label>
+                <label for="termsAccepted">Elfogadom a foglalási feltételeket</label>
             </div>
             <button type="submit">Fizetés</button>
             <p class="small-text">* A "Fizetés" gomb egy biztonságos bankkártyás fizetési felületre fog mutatni.</p>
@@ -775,10 +791,6 @@
             <input id="contactTel" name="contactTel" placeholder="pl. + 36 20 123 4567" required="" type="Tel"/>
             <label for="contactMessage">Üzenet:</label>
             <textarea id="contactMessage" name="contactMessage" placeholder="Írd ide kérdésed, vagy üzenetedet..." required="" rows="5"></textarea>
-            <div class="checkbox-container">
-                <input id="contactPrivacyAccepted" name="contactPrivacyAccepted" required="" type="checkbox"/>
-                <label for="contactPrivacyAccepted">Az Adatvédelmi nyilatkozat irányelveit megismertem és elfogadom. (<a href="#" class="open-privacy-policy-link">Adatvédelmi nyilatkozat</a>)</label>
-            </div>
             <button id="button" type="submit">Üzenet küldése</button>
         </form>
     </div>
@@ -786,23 +798,27 @@
 
 <div class="modal-overlay" id="privacyPolicyModal">
     <div class="modal-content">
-        <span class="modal-close" onclick="document.getElementById('privacyPolicyModal').style.display='none'">✖</span>
-        <h2>Adatvédelmi Nyilatkozat</h2>
-        <p><strong>Bevezetés</strong></p>
-        <p>Ez az adatvédelmi nyilatkozat ismerteti, hogy milyen típusú információkat gyűjtünk Öntől, amikor meglátogatja weboldalunkat, hogyan használjuk fel ezeket az információkat, kivel osztjuk meg, és milyen lehetőségei vannak az adatainak kezelésével kapcsolatban. Az Ön adatainak védelme számunkra rendkívül fontos.</p>
-        <p><strong>Adatgyűjtés és felhasználás</strong></p>
-        <p>Weboldalunk látogatása során gyűjthetünk személyes adatokat, mint például az Ön nevét, e-mail címét, telefonszámát, országát, városát és címét, különösen akkor, ha Ön kitölt egy űrlapot (pl. kapcsolatfelvételi űrlap, foglalási űrlap). Ezeket az adatokat kizárólag az Ön kérésének teljesítéséhez, szolgáltatásaink nyújtásához, valamint az Önnel való kommunikációhoz használjuk fel.</p>
-        <p><strong>Adatmegosztás</strong></p>
-        <p>Az Ön személyes adatait harmadik féllel nem osztjuk meg, kivéve, ha ez jogi kötelezettségünk, vagy az Ön kifejezett hozzájárulásával történik. Az EmailJS szolgáltatást használjuk az űrlapok elküldésére, amely harmadik fél adatfeldolgozóként működik. Javasoljuk, hogy tekintse át az EmailJS adatvédelmi irányelveit is.</p>
-        <p><strong>Sütik (Cookies)</strong></p>
-        <p>Weboldalunk használhat sütiket a felhasználói élmény javítása érdekében. A sütik kis szöveges fájlok, amelyek az Ön eszközén tárolódnak. Önnek lehetősége van a sütik beállításainak kezelésére a böngészőjében.</p>
-        <p><strong>Az Ön jogai</strong></p>
-        <p>Az Önnek joga van hozzáférni az általunk tárolt személyes adataihoz, kérheti azok helyesbítését, törlését, vagy az adatkezelés korlátozását. Amennyiben élni szeretne ezen jogaival, kérjük, vegye fel velünk a kapcsolatot az alábbi elérhetőségeken.</p>
-        <p><strong>Kapcsolat</strong></p>
-        <p>Bármilyen adatvédelmi kérdés esetén forduljon hozzánk bizalommal a weboldalon található kapcsolatfelvételi űrlapon keresztül, vagy az impresszumban megadott elérhetőségeken.</p>
-        <p class="small-text">
-            <em>Ez egy általános adatvédelmi nyilatkozat minta. Kérjük, konzultáljon jogi szakértővel, hogy az Ön vállalkozására és a vonatkozó jogszabályokra (pl. GDPR) szabott, teljes körű és pontos adatvédelmi nyilatkozatot hozzon létre.</em>
-        </p>
+        <span class="modal-close">✖</span>
+        <h2>Adatvédelmi és Cookie Szabályzat</h2>
+        <p>Ez a dokumentum tájékoztatja Önt arról, hogyan kezeljük személyes adatait és milyen cookie-kat használunk weboldalunkon. Kérjük, figyelmesen olvassa el!</p>
+
+        <h3>Adatkezelés</h3>
+        <p>A VIP Spanyolországi Terepbejárás (Adatkezelő) elkötelezett az Ön személyes adatainak védelme iránt. Az Ön által megadott személyes adatokat kizárólag az Önnel való kapcsolattartás, a szolgáltatásaink nyújtása, valamint a foglalások és üzenetek feldolgozása céljából gyűjtjük és kezeljük. Harmadik félnek az Ön hozzájárulása nélkül nem adjuk át adatait, kivéve, ha erre jogszabály kötelez minket.</p>
+        <ul>
+            <li>**Kapcsolatfelvételi űrlap:** Az űrlapon megadott név, e-mail cím, telefonszám, üzenet tartalom.</li>
+            <li>**Foglalási űrlap:** Az űrlapon megadott név, e-mail cím, ország, város, utca, házszám, kiválasztott csomag és dátum.</li>
+        </ul>
+        <p>Az adatok tárolása az EmailJS szolgáltatón keresztül történik az Ön hozzájárulásával. Önnek joga van az adataihoz hozzáférni, azokat módosítani vagy törölni. Kérjük, ezirányú kérését jelezze a [ide jön az e-mail cím, pl. info@domain.com] e-mail címen.</p>
+
+        <h3>Cookie-k (Sütik) használata</h3>
+        <p>Weboldalunk cookie-kat használ a felhasználói élmény javítása és a weboldal működésének elemzése érdekében. A cookie-k kis szöveges fájlok, amelyeket a böngészője tárol az Ön eszközén.</p>
+        <p>Weboldalunk a következő típusú cookie-kat használja:</p>
+        <ul>
+            <li>**Munkamenet cookie-k:** Ezek ideiglenes cookie-k, amelyek a böngésző bezárásakor törlődnek. Ezek nélkülözhetetlenek a weboldal alapvető funkcióinak működéséhez.</li>
+            <li>**Analitikai cookie-k:** (Pl. Google Analytics – ha használsz ilyet, különben törölhető) Ezek segítenek nekünk megérteni, hogyan használják a látogatók a weboldalt, így fejleszteni tudjuk azt.</li>
+        </ul>
+        <p>A legtöbb böngésző alapértelmezetten engedélyezi a cookie-k használatát, de Ön módosíthatja böngészője beállításait, hogy visszautasítsa a cookie-kat, vagy figyelmeztetést kapjon, mielőtt cookie-kat tárolna az eszköze. Felhívjuk figyelmét, hogy a cookie-k letiltása befolyásolhatja weboldalunk egyes funkcióinak működését.</p>
+        <p>Ezen szabályzat bármikor módosulhat. A módosításokról ezen az oldalon tájékozódhat.</p>
     </div>
 </div>
 <section class="section" id="questionnaire-section">
@@ -815,7 +831,7 @@
     <div class="container">
         <p>© 2025 VIP Spanyolországi Terepbejárás. Minden jog fenntartva.</p>
         <div class="contact-info">
-            <p>Impresszum | <a href="#" id="openPrivacyPolicyModalBtn" style="color: #fff; text-decoration: underline;">Adatvédelmi nyilatkozat</a></p>
+            <p>Impresszum | <a href="#" id="openPrivacyModalBtn">Adatvédelmi nyilatkozat</a></p>
         </div>
     </div>
 </footer>
@@ -825,17 +841,11 @@
         emailjs.init('Pi8bBAb-9NUxOTkF1'); // A te Public Key-d
 
         const btn = document.getElementById('button');
-        const contactForm = document.getElementById('contactForm'); // A form elem referenciája
+        const form = document.getElementById('contactForm'); // A form elem referenciája
 
-        if (contactForm) { // Ellenőrizzük, hogy az űrlap létezik-e
-            contactForm.addEventListener('submit', function(event) {
+        if (form) { // Ellenőrizzük, hogy az űrlap létezik-e
+            form.addEventListener('submit', function(event) {
                 event.preventDefault(); // Megakadályozza az űrlap alapértelmezett HTML beküldését
-
-                const contactPrivacyAccepted = document.getElementById('contactPrivacyAccepted').checked;
-                if (!contactPrivacyAccepted) {
-                    alert('Kérjük, fogadja el az Adatvédelmi nyilatkozat irányelveit a folytatáshoz.');
-                    return;
-                }
 
                 btn.value = 'Sending...';
 
@@ -846,7 +856,7 @@
                     .then(() => {
                         btn.value = 'Send Email';
                         alert('Email elküldve sikeresen!');
-                        contactForm.reset(); // Űrlap törlése a sikeres küldés után
+                        form.reset(); // Űrlap törlése a sikeres küldés után
                         const contactFormModal = document.getElementById('contactFormModal');
                         if (contactFormModal) {
                             contactFormModal.style.display = 'none';
@@ -859,99 +869,11 @@
             });
         }
 
-        // Kezeljük a Foglalás űrlap beküldését
-        const modalBookingForm = document.getElementById('modalBookingForm');
-
-        if (modalBookingForm) {
-            modalBookingForm.addEventListener('submit', function(event) {
-                event.preventDefault(); // Megakadályozza az űrlap alapértelmezett HTML beküldését (így nem irányít át rögtön a VPOS-ra)
-
-                // Értékek lekérése az űrlapról és a modális ablakból
-                const tourDate = document.getElementById('selectedTourDate').textContent;
-                const packageType = document.getElementById('selectedPackageType').textContent;
-                const tourPrice = document.getElementById('selectedTourPrice').textContent;
-                const fullName = document.getElementById('fullName').value;
-                const email = document.getElementById('email').value;
-                // A telefonszám (`Tel`) hiányzott az űrlapról és a kód sem kezelte, hozzáadtam egy alapértelmezett üres stringet.
-                // Ha szeretnéd, hogy a telefonszámot is elküldje, akkor hozzá kell adnod egy input mezőt a bookingFormModal űrlaphoz (pl. id="tel")
-                // és lekérni az értékét.
-                const tel = ''; // Jelenleg nincs telefon mező a foglalási űrlapon, ezért üresen hagyjuk
-                const country = document.getElementById('country').value;
-                const city = document.getElementById('city').value;
-                const address = document.getElementById('address').value;
-                const termsAccepted = document.getElementById('termsAccepted').checked;
-
-                if (!termsAccepted) {
-                    alert('Kérjük, fogadja el a foglalási feltételeket a folytatáshoz.');
-                    return;
-                }
-
-                // Itt add meg az ÚJ, Foglalás visszaigazolásra szánt EmailJS sablon ID-ját
-                const bookingTemplateID = 'template_rdv3ygd'; // <<< IDE ÍRD BE AZ ÚJ SABLON ID-JÉT!
-
-                // Paraméterek előkészítése az EmailJS-hez
-                const templateParams = {
-                    tour_date: tourDate,
-                    package_type: packageType,
-                    tour_price: tourPrice,
-                    full_name: fullName,
-                    user_email: email, // Fontos: ide írd a felhasználó e-mail címét, ha ő is kapja az e-mailt!
-                    user_tel: tel,	// Telefonszám hozzáadva
-                    user_country: country,
-                    user_city: city,
-                    user_address: address,
-                    // Ide adhatsz hozzá további mezőket, amiket a sablonodban használsz
-                };
-
-                // Gomb állapotának frissítése (opcionális)
-                const submitButton = modalBookingForm.querySelector('button[type="submit"]');
-                const originalButtonText = submitButton.textContent;
-                submitButton.textContent = 'Foglalás küldése...';
-                submitButton.disabled = true;
-
-                // E-mail küldése az EmailJS-en keresztül
-                emailjs.send('service_0mkavr2', bookingTemplateID, templateParams) // A service_0mkavr2 a már meglévő Service ID-d
-                    .then(() => {
-                        alert('Foglalási adatok elküldve! Most átirányítjuk a fizetési oldalra.');
-
-                        // Gomb állapotának visszaállítása
-                        submitButton.textContent = originalButtonText;
-                        submitButton.disabled = false;
-
-                        // Modális ablak bezárása az e-mail küldése után, de még az átirányítás előtt
-                        const bookingModal = document.getElementById('bookingFormModal');
-                        if (bookingModal) {
-                            bookingModal.style.display = 'none';
-                        }
-
-                        // Átirányítás a bankkártyás fizetési terminálra
-                        // FONTOS: Győződj meg róla, hogy a modalBookingForm.action attribútum a VPOS linkre mutat!
-                        window.location.href = modalBookingForm.action;
-                    }, (err) => {
-                        console.error('Hiba történt a foglalási email küldésekor:', err);
-                        alert('Hiba történt a foglalási email küldésekor. Kérjük, próbáld újra.');
-
-                        // Gomb állapotának visszaállítása hiba esetén is
-                        submitButton.textContent = originalButtonText;
-                        submitButton.disabled = false;
-                    });
-            });
-        }
-//_______________________________________________________________________________________
         // Központi árdefiníció
         const packagePrices = {
-            "Alap Csomag": "1.950 €",
+            "Alap Csomag": "3.950 €",
             "Bővített Csomag": "4.950 €"
         };
-//_______________________________________________________________________________________
-
-        // ÚJ KÓD: Árak feltöltése a "Csomagajánlatok" panelbe
-        document.querySelectorAll('.pricing-table .price-card .price').forEach(priceElement => {
-            const packageType = priceElement.dataset.packageType;
-            if (packagePrices[packageType]) {
-                priceElement.textContent = packagePrices[packageType];
-            }
-        });
 
         // Árak feltöltése a táblázatba
         document.querySelectorAll('.tour-table-price-cell').forEach(cell => {
@@ -1007,6 +929,82 @@
             });
         }
 
+        // Kezeljük a Foglalás űrlap beküldését
+        const modalBookingForm = document.getElementById('modalBookingForm');
+
+        if (modalBookingForm) {
+            modalBookingForm.addEventListener('submit', function(event) {
+                event.preventDefault(); // Megakadályozza az űrlap alapértelmezett HTML beküldését (így nem irányít át rögtön a VPOS-ra)
+
+                // Értékek lekérése az űrlapról és a modális ablakból
+                const tourDate = document.getElementById('selectedTourDate').textContent;
+                const packageType = document.getElementById('selectedPackageType').textContent;
+                const tourPrice = document.getElementById('selectedTourPrice').textContent;
+                const fullName = document.getElementById('fullName').value;
+                const email = document.getElementById('email').value;
+
+                const country = document.getElementById('country').value;
+                const city = document.getElementById('city').value;
+                const address = document.getElementById('address').value;
+                const termsAccepted = document.getElementById('termsAccepted').checked;
+
+                if (!termsAccepted) {
+                    alert('Kérjük, fogadja el a foglalási feltételeket a folytatáshoz.');
+                    return;
+                }
+
+                // Itt add meg az ÚJ, Foglalás visszaigazolásra szánt EmailJS sablon ID-ját
+                const bookingTemplateID = 'template_rdv3ygd'; // <<< IDE ÍRD BE AZ ÚJ SABLON ID-JÉT!
+
+                // Paraméterek előkészítése az EmailJS-hez
+                const templateParams = {
+                    tour_date: tourDate,
+                    package_type: packageType,
+                    tour_price: tourPrice,
+                    full_name: fullName,
+                    user_email: email, // Fontos: ide írd a felhasználó e-mail címét, ha ő is kapja az e-mailt!
+                    // user_Tel.: Tel, // Nincs "Tel" változó definiálva a JavaScriptben.
+                    user_country: country,
+                    user_city: city,
+                    user_address: address,
+                    // Ide adhatsz hozzá további mezőket, amiket a sablonodban használsz
+                };
+
+                // Gomb állapotának frissítése (opcionális)
+                const submitButton = modalBookingForm.querySelector('button[type="submit"]');
+                const originalButtonText = submitButton.textContent;
+                submitButton.textContent = 'Foglalás küldése...';
+                submitButton.disabled = true;
+
+                // E-mail küldése az EmailJS-en keresztül
+                emailjs.send('service_0mkavr2', bookingTemplateID, templateParams) // A service_0mkavr2 a már meglévő Service ID-d
+                    .then(() => {
+                        alert('Foglalási adatok elküldve! Most átirányítjuk a fizetési oldalra.');
+                        
+                        // Gomb állapotának visszaállítása
+                        submitButton.textContent = originalButtonText;
+                        submitButton.disabled = false;
+
+                        // Modális ablak bezárása az e-mail küldése után, de még az átirányítás előtt
+                        const bookingModal = document.getElementById('bookingFormModal');
+                        if (bookingModal) {
+                            bookingModal.style.display = 'none';
+                        }
+
+                        // Átirányítás a bankkártyás fizetési terminálra
+                        // FONTOS: Győződj meg róla, hogy a modalBookingForm.action attribútum a VPOS linkre mutat!
+                        window.location.href = modalBookingForm.action;
+                    }, (err) => {
+                        console.error('Hiba történt a foglalási email küldésekor:', err);
+                        alert('Hiba történt a foglalási email küldésekor. Kérjük, próbálja újra.');
+                        
+                        // Gomb állapotának visszaállítása hiba esetén is
+                        submitButton.textContent = originalButtonText;
+                        submitButton.disabled = false;
+                    });
+            });
+        }
+        
         // Kapcsolatfelvételi Modális Ablak Logikája
         const openContactModalBtn = document.getElementById('openContactModalBtn');
         const contactFormModal = document.getElementById('contactFormModal');
@@ -1036,34 +1034,19 @@
             });
         }
 
-        // Adatvédelmi Nyilatkozat Modális Ablak Logikája
-        const openPrivacyPolicyModalBtn = document.getElementById('openPrivacyPolicyModalBtn');
+        // ÚJ: Adatvédelmi és Cookie Szabályzat Modális Ablak Logikája
+        const openPrivacyModalBtn = document.getElementById('openPrivacyModalBtn');
         const privacyPolicyModal = document.getElementById('privacyPolicyModal');
         const privacyModalCloseBtn = privacyPolicyModal ? privacyPolicyModal.querySelector('.modal-close') : null;
 
-        // Ezt a függvényt fogjuk meghívni, ha a privacy policy linkre kattintanak
-        function openPrivacyPolicyModal(e) {
-            e.preventDefault();
-            if (privacyPolicyModal) {
-                // Először bezárunk minden más modált
-                if (bookingModal && bookingModal.style.display === 'flex') {
-                    bookingModal.style.display = 'none';
+        if (openPrivacyModalBtn) {
+            openPrivacyModalBtn.addEventListener('click', function(e) {
+                e.preventDefault();
+                if (privacyPolicyModal) {
+                    privacyPolicyModal.style.display = 'flex';
                 }
-                if (contactFormModal && contactFormModal.style.display === 'flex') {
-                    contactFormModal.style.display = 'none';
-                }
-                privacyPolicyModal.style.display = 'flex';
-            }
+            });
         }
-
-        if (openPrivacyPolicyModalBtn) {
-            openPrivacyPolicyModalBtn.addEventListener('click', openPrivacyPolicyModal);
-        }
-
-        // ÚJ: Linkek az Adatvédelmi Nyilatkozathoz a modális ablakokon belül
-        document.querySelectorAll('.open-privacy-policy-link').forEach(link => {
-            link.addEventListener('click', openPrivacyPolicyModal);
-        });
 
         if (privacyPolicyModal) {
             privacyPolicyModal.addEventListener('click', function(e) {
@@ -1080,8 +1063,7 @@
             });
         }
 
-
-        // ESC billentyűvel való bezárás (mindkét modálra)
+        // ESC billentyűvel való bezárás (mindhárom modálra)
         document.addEventListener('keydown', function(e) {
             if (e.key === 'Escape') {
                 if (bookingModal && bookingModal.style.display === 'flex') {
