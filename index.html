@@ -16,7 +16,6 @@
             padding: 0;
             background-color: #f4f4f4;
             color: #333;
-            /* pointer-events: none; EZT A SORT ELTÁVOLÍTOTTUK */
         }
         .container {
             width: 80%;
@@ -442,6 +441,11 @@
                 font-weight: bold;
                 color: #77aaff;
             }
+            /* ÚJ SZABÁLY IDEILGENES DIAGNOSZTIKAI CÉLRA */
+            td[data-label="Ár"] {
+                pointer-events: none !important; /* Átengedi a kattintást */
+                background-color: rgba(255, 165, 0, 0.3) !important; /* Halvány narancssárga háttér az "Ár" cellának */
+            }
             .table-btn-cell {
                 text-align: center; /* A gombot középre igazítjuk */
                 padding-left: 0; /* Nincs szükség extra paddingre a gombnál */
@@ -463,12 +467,6 @@
         border: 2px dashed green !important; /* Zöld szaggatott szegély a gombot tartalmazó cellára */
         background-color: rgba(0, 255, 0, 0.1) !important; /* Zöldes háttér */
     }
-    td[data-label="Ár"] {
-        /* Ideiglenesen hozzáadva a diagnosztikához */
-        pointer-events: none !important; /* Átengedi a kattintást */
-        background-color: rgba(255, 165, 0, 0.3) !important; /* Halvány narancssárga háttér az "Ár" cellának */
-    }
-}        
 
     /* A Kapcsolatfelvétel gombhoz */
     #openContactModalBtn {
@@ -1026,7 +1024,7 @@
                         window.location.href = modalBookingForm.action;
                     }, (err) => {
                         console.error('Hiba történt a foglalási email küldésekor:', err);
-                        alert('Hiba történt a foglalási email küldésekor. Kérjük, próbálja újra.');
+                        alert('Hiba történt a foglalási email küldésekor. Kérjük, próbáld újra.');
                         
                         // Gomb állapotának visszaállítása hiba esetén is
                         submitButton.textContent = originalButtonText;
