@@ -249,11 +249,14 @@
 
         /* Modal Specifikus stílusok */
         .modal-overlay {
-            display:none; /* Ezzel rejtőzik el alapból */
+            display:none; /* Ezzel rejtődik el alapból */
             position:fixed;
             top:0; left:0;
             width:100%; height:100%;
-            background:rgba(0,0,0,0.7);
+            /* -- DIAGNOSZTIKAI MÓDOSÍTÁSOK KEZDETE -- */
+            background:rgba(255, 0, 0, 0.3); /* Ideiglenesen piros, enyhén átlátszó háttér a teszteléshez */
+            pointer-events: none; /* Ideiglenesen kikapcsolja az eseményfogást az overlay-en a teszteléshez */
+            /* -- DIAGNOSZTIKAI MÓDOSÍTÁSOK VÉGE -- */
             z-index:9999;
             /* A display:flex-et a JavaScript adja hozzá megnyitáskor */
             align-items: center;
@@ -844,7 +847,7 @@
         if (form) { // Ellenőrizzük, hogy az űrlap létezik-e
             form.addEventListener('submit', function(event) {
                 event.preventDefault(); // Megakadályozza az űrlap alapértelmezett HTML beküldését
-
+                alert('Kapcsolatfelvétel gomb kattintás érzékelve a G41-en!'); // DIAGNOSZTIKAI CÉLÚ ALERT
                 btn.textContent = 'Küldés...';
 
                 const serviceID = 'service_0mkavr2'; // A te Service ID-d
@@ -869,8 +872,8 @@
 
         // Központi árdefiníció
         const packagePrices = {
-            "Alap Csomag": "1.950 €",
-            "Bővített Csomag": "2.950 €"
+            "Alap Csomag": "3.950 €",
+            "Bővített Csomag": "4.950 €"
         };
 
         // Árak feltöltése a táblázatba
@@ -902,6 +905,7 @@
         tourBookingButtons.forEach(btn => {
             btn.addEventListener('click', function(e) {
                 e.preventDefault();
+                alert('Foglalás gomb kattintás érzékelve a G41-en!'); // DIAGNOSZTIKAI CÉLÚ ALERT
                 const date = this.dataset.date;
                 const packageType = this.dataset.package;
                 const price = this.dataset.price;
