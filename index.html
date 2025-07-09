@@ -536,7 +536,7 @@
 <div class="pricing-table">
 <div class="price-card">
 <h3>Alap Csomag</h3>
-<p class="price">3.950 €</p>
+<p class="price" data-package-type="Alap Csomag">3.950 €</p>
 <p>(2 főre, 4 nap / 3 éjszaka)</p>
 <ul>
 <li>Gazdaságos választás</li>
@@ -553,7 +553,7 @@
 </div>
 <div class="price-card">
 <h3>Bővített Csomag</h3>
-<p class="price">4.950 €</p>
+<p class="price" data-package-type="Bővített Csomag">4.950 €</p>
 <p>(2 főre, 5 nap / 4 éjszaka)</p>
 <ul>
 <li>5 nap / 4 éjszaka</li>
@@ -775,6 +775,7 @@
 </div>
 <button type="submit">Fizetés</button>
 <p class="small-text">* A "Fizetés" gomb egy biztonságos bankkártyás fizetési felületre fog mutatni.</p>
+<p class="small-text">A foglalással elfogadja az <a href="#" id="openPrivacyModalFromBookingBtn">Adatvédelmi és Cookie Szabályzatot</a>.</p>
 </form>
 </div>
 </div>
@@ -880,6 +881,15 @@
                 cell.textContent = packagePrices[packageType];
             }
         });
+
+        // ÚJ: Árak feltöltése a "Csomagajánlataink" panelre
+        document.querySelectorAll('.price-card .price').forEach(priceElement => {
+            const packageType = priceElement.dataset.packageType;
+            if (packagePrices[packageType]) {
+                priceElement.textContent = packagePrices[packageType];
+            }
+        });
+
 
         // Árak beállítása a "Foglalás" gombok data-price attribútumába
         document.querySelectorAll('.tour-booking-btn').forEach(btn => {
@@ -1032,8 +1042,11 @@
             });
         }
 
-        // ÚJ: Adatvédelmi és Cookie Szabályzat Modális Ablak Logikája
+        // Adatvédelmi és Cookie Szabályzat Modális Ablak Logikája
         const openPrivacyModalBtn = document.getElementById('openPrivacyModalBtn');
+        // ÚJ: Adatvédelmi link a foglalási modálból
+        const openPrivacyModalFromBookingBtn = document.getElementById('openPrivacyModalFromBookingBtn');
+
         const privacyPolicyModal = document.getElementById('privacyPolicyModal');
         const privacyModalCloseBtn = privacyPolicyModal ? privacyPolicyModal.querySelector('.modal-close') : null;
 
@@ -1046,9 +1059,21 @@
             });
         }
 
+        // ÚJ: Eseményfigyelő a foglalási modálból érkező adatvédelmi linkre
+        if (openPrivacyModalFromBookingBtn) {
+            openPrivacyModalFromBookingBtn.addEventListener('click', function(e) {
+                e.preventDefault();
+                if (privacyPolicyModal) {
+                    privacyPolicyModal.style.display = 'flex';
+                    // Nem zárjuk be a bookingModal-t, hanem nyitva hagyjuk mögötte
+                }
+            });
+        }
+
+
         if (privacyPolicyModal) {
             privacyPolicyModal.addEventListener('click', function(e) {
-                if (e.target === privacyPolicyModal) {
+                if (e.target === privacyPolicyModal) { // Csak az overlayre kattintva záródjon be
                     privacyPolicyModal.style.display = 'none';
                 }
             });
@@ -1061,17 +1086,15 @@
             });
         }
 
-        // ESC billentyűvel való bezárás (mindhárom modálra)
+        // ESC billentyűvel való bezárás (mindhárom modálra, prioritással)
         document.addEventListener('keydown', function(e) {
             if (e.key === 'Escape') {
-                if (bookingModal && bookingModal.style.display === 'flex') {
-                    bookingModal.style.display = 'none';
-                }
-                if (contactFormModal && contactFormModal.style.display === 'flex') {
-                    contactFormModal.style.display = 'none';
-                }
                 if (privacyPolicyModal && privacyPolicyModal.style.display === 'flex') {
                     privacyPolicyModal.style.display = 'none';
+                } else if (bookingModal && bookingModal.style.display === 'flex') {
+                    bookingModal.style.display = 'none';
+                } else if (contactFormModal && contactFormModal.style.display === 'flex') {
+                    contactFormModal.style.display = 'none';
                 }
             }
         });
