@@ -1,47 +1,1107 @@
 <!DOCTYPE html>
+
 <html lang="hu">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Gomb Teszt</title>
-    <style>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>VIP Spanyolországi Terepbejárás - Ingatlanvásárlás Előtt</title>
+<meta content="Prémium terepbejárás a Costa Blanca és Costa Cálida régiókban. Segítünk megalapozott döntést hozni spanyolországi ingatlanvásárlás előtt, 40 év tapasztalattal." name="description"/>
+<link href="Graphic2-removebg-preview.png" rel="icon" type="image/png"/>
+<style>
+        /* Alapvető CSS stílusok */
         body {
             font-family: Arial, sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+            color: #333;
+            /* pointer-events: none; EZT A SORT ELTÁVOLÍTOTTUK */
+        }
+        .container {
+            width: 80%;
+            margin: auto;
+            overflow: hidden;
+            padding: 5px 0;
+        }
+        header {
+            background: #333;
+            color: #fff;
+            padding-top: 20px;
+            min-height: 70px;
+            border-bottom: #77aaff 3px solid;
+            text-align: center;
+        }
+        header h1 {
+            margin: 0;
+            padding-bottom: 10px;
+        }
+        header p {
+            font-size: 1.1em;
+            margin-bottom: 20px;
+        }
+        .hero {
+            color: #37a3fb;
+            height: 280px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            flex-direction: column;
+            text-shadow: 2px 2px 1px rgba(0,0,0,0.7);
+        }
+        .hero h2 {
+            font-size: 2.8em;
+            margin-bottom: 10px;
+        }
+        .hero p {
+            font-size: 1.4em;
+            margin-bottom: 30px;
+        }
+        .btn {
+            display: inline-block;
+            color: #fff;
+            background: #77aaff;
+            padding: 10px 25px;
+            text-decoration: none;
+            border-radius: 5px;
+            transition: background 0.5s ease;
+            cursor: pointer;
+            border: none;
+            font-size: 1em;
+        }
+        .btn:hover {
+            background: #5588cc;
+        }
+        .section {
+            padding: 40px 0;
+            text-align: center;
+        }
+        .section h2 {
+            font-size: 2em;
+            margin-bottom: 20px;
+            color: #333;
+        }
+        .section p {
+            max-width: 800px;
+            margin: 0 auto 20px auto;
+        }
+        .features {
+            display: flex;
+            justify-content: space-around;
+            flex-wrap: wrap;
+            margin-top: 30px;
+        }
+        .feature-item {
+            flex-basis: 30%;
+            background: #fff;
+            padding: 20px;
+            margin: 10px;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            text-align: left;
+        }
+        .feature-item h3 {
+            color: #77aaff;
+            margin-bottom: 10px;
+        }
+        .how-it-works {
+            background-color: #e2e2e2;
+            padding: 40px 0;
+        }
+        .how-it-works .steps {
+            display: flex;
+            justify-content: space-around;
+            flex-wrap: wrap;
+            text-align: center;
+        }
+        .how-it-works .step {
+            flex-basis: 30%;
+            background: #fff;
+            padding: 20px;
+            margin: 10px;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        .how-it-works .step span {
+            display: block;
+            font-size: 2.5em;
+            color: #77aaff;
+            margin-bottom: 10px;
+        }
+        .pricing {
+            background: #333;
+            color: #fff;
+            padding: 50px 0;
+            text-align: center;
+        }
+        .pricing h2 {
+            color: #fff;
+        }
+        .pricing-table {
             display: flex;
             justify-content: center;
-            align-items: center;
-            min-height: 100vh;
-            margin: 0;
-            background-color: #f0f0f0;
+            flex-wrap: wrap;
+            gap: 30px;
+            margin-top: 30px;
         }
-        .test-btn {
-            padding: 20px 40px;
-            font-size: 1.5em;
-            background-color: #007bff;
-            color: white;
-            border: none;
+        .price-card {
+            background: #fff;
+            color: #333;
+            padding: 30px;
             border-radius: 8px;
-            cursor: pointer;
             box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+            text-align: center;
+            width: 280px;
         }
+        .price-card h3 {
+            color: #77aaff;
+            font-size: 1.8em;
+            margin-bottom: 15px;
+        }
+        .price-card .price {
+            font-size: 2.5em;
+            font-weight: bold;
+            color: #333;
+            margin-bottom: 15px;
+        }
+        .price-card ul {
+            list-style: none;
+            padding: 0;
+            margin-bottom: 25px;
+            text-align: left;
+        }
+        .price-card ul li {
+            margin-bottom: 10px;
+            font-size: 0.95em;
+            display: flex;
+            align-items: center;
+        }
+        .price-card ul li::before {
+            content: '✔️';
+            margin-right: 8px;
+            color: #77aaff;
+        }
+        footer {
+            background: #333;
+            color: #fff;
+            text-align: center;
+            padding: 20px 0;
+            margin-top: 30px;
+        }
+        footer .contact-info p {
+            margin: 5px 0;
+        }
+        footer .contact-info a { /* Új stílus a lábléc linkekhez */
+            color: #fff;
+            text-decoration: none;
+            cursor: pointer;
+        }
+        footer .contact-info a:hover { /* Új stílus a lábléc linkekhez */
+            text-decoration: underline;
+        }
+
+        /* Táblázat stílusok */
+        .tour-table-section {
+            padding: 40px 20px;
+            background-color: #fff; /* A panel színe */
+            margin-top: 30px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        .tour-table-section h1 {
+            color: #333;
+            margin-bottom: 20px;
+            font-size: 2em;
+        }
+        table {
+            font-family: Arial, sans-serif;
+            color: #333;
+            border-collapse: collapse;
+            width: 100%;
+            margin: 0 auto;
+            max-width: 1000px;
+            table-layout: auto;
+        }
+        td, th {
+            border: 1px solid #ddd;
+            text-align: left;
+            padding: 7px;
+        }
+        th {
+            background-color: #e6e6e6; /* A fejléc színe */
+            font-weight: bold;
+            color: #555;
+        }
+        /* Módosított háttérszín a páros sorokhoz */
+        tr:nth-child(even) {
+            background-color: #f2f2f2; /* Frissített szín */
+        }
+        tr:hover {
+            background-color: #c7c7c7;
+        }
+        .table-btn-cell {
+            text-align: center;
+            vertical-align: middle;
+        }
+        .table-btn-cell .btn {
+            padding: 7px 10px;
+            font-size: 0.8em;
+        }
+
+        /* Modal Specifikus stílusok */
+        .modal-overlay {
+            display:none; /* Ezzel rejtődik el alapból */
+            position:fixed;
+            top:0; left:0;
+            width:100%; height:100%;
+            /* -- DIAGNOSZTIKAI MÓDOSÍTÁSOK KEZDETE -- */
+            background:rgba(255, 0, 0, 0.3); /* Ideiglenesen piros, enyhén átlátszó háttér a teszteléshez */
+            pointer-events: none; /* Ideiglenesen kikapcsolja az eseményfogást az overlay-en a teszteléshez */
+            /* -- DIAGNOSZTIKAI MÓDOSÍTÁSOK VÉGE -- */
+            z-index:9999;
+            /* A display:flex-et a JavaScript adja hozzá megnyitáskor */
+            align-items: center;
+            justify-content: center;
+        }
+        .modal-content {
+            background:#fff;
+            width:90%;
+            max-width:500px;
+            padding:30px;
+            border-radius:10px;
+            position:relative;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+            text-align: left;
+            max-height: 80vh; /* Maximális magasság a görgetéshez */
+            overflow-y: auto; /* Görgetés, ha a tartalom hosszabb, mint a modál */
+        }
+        .modal-close {
+            position:absolute;
+            top:10px;
+            right:20px;
+            cursor:pointer;
+            font-size:1.5em;
+            color: #333;
+        }
+        .modal-content h2 {
+            text-align: center;
+            margin-bottom: 25px;
+            color: #77aaff;
+        }
+        .modal-content h3 { /* Új stílus az alfejlécekhez a modálban */
+            color: #333;
+            margin-top: 20px;
+            margin-bottom: 10px;
+        }
+        .modal-content p, .modal-content ul { /* A modálon belüli paragrafusok és listák */
+            margin-bottom: 15px;
+            line-height: 1.5;
+            font-size: 0.95em;
+        }
+        .modal-content ul {
+            list-style: disc; /* Visszaállítja a lista stílust */
+            padding-left: 20px;
+        }
+        .modal-content ul li {
+            margin-bottom: 5px;
+            font-size: 1em; /* Az alaplista elemek kisebb betűmérete */
+            display: list-item; /* Visszaállítja a lista elem megjelenését */
+        }
+        .modal-content ul li::before { /* Eltávolítja a '✔️' ikonokat a modál listáiból */
+            content: none;
+        }
+        .modal-content p.small-text {
+            font-size: 0.85em;
+            margin-top: 15px;
+            color: #777;
+            text-align: center;
+        }
+        .modal-content button[type="submit"] {
+            background:#77aaff;
+            color:#fff;
+            padding:12px 25px;
+            border:none;
+            border-radius:5px;
+            cursor:pointer;
+            font-size: 1em;
+            display: block;
+            margin: 20px auto 0;
+            transition: background 0.3s ease;
+        }
+        .modal-content button[type="submit"]:hover {
+            background: #5588cc;
+        }
+        .modal-content label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: bold;
+            color: #555;
+        }
+        .modal-content input[type="text"],
+        .modal-content input[type="email"],
+        .modal-content input[type="tel"],
+        .modal-content textarea { /* Hozzáadva a textarea stílusához */
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 15px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            box-sizing: border-box;
+        }
+        .modal-content .checkbox-container {
+            margin-top: 15px;
+            display: flex;
+            align-items: center;
+        }
+        .modal-content .checkbox-container input[type="checkbox"] {
+            margin-right: 10px;
+        }
+        .mobile-package-panels {
+            display: none;
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                width: 95%;
+                padding: 15px 0;
+            }
+            .hero h2 {
+                font-size: 2em;
+                margin-bottom: 5px;
+            }
+            .hero p {
+                font-size: 1.1em;
+                padding: 0 10px;
+            }
+            .hero {
+                height: auto;
+                padding: 40px 0;
+            }
+            .features, .how-it-works .steps, .pricing-table {
+                flex-direction: column;
+                align-items: center;
+                gap: 20px;
+            }
+            .feature-item, .how-it-works .step {
+                flex-basis: 100%;
+                width: 100%;
+                margin: 0;
+                max-width: 350px;
+                padding: 20px;
+                box-sizing: border-box;
+            }
+            .price-card {
+                flex-basis: 100%;
+                width: 100%;
+                margin: 0;
+                max-width: 350px;
+                padding: 20px;
+            }
+            .modal-content {
+                margin: 10% auto;
+                width: 95%;
+                padding: 20px;
+            }
+
+            /* Reszponzív táblázat "kártya" nézet */
+            .table-wrapper {
+                overflow-x: hidden; /* Nincs szükség görgetésre, ha a kártya nézetet használjuk */
+            }
+            table {
+                border: 0; /* Eltávolítjuk az alapértelmezett táblázat szegélyt */
+            }
+            table caption {
+                font-size: 1.3em;
+            }
+            thead {
+                display: none; /* A fejléc elrejtése mobilon */
+            }
+            tr {
+                border: 1px solid #ddd;
+                display: block; /* A sorok kártya-szerű blokkokként jelennek meg */
+                margin-bottom: 15px;
+                box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+                border-radius: 8px;
+            }
+            td {
+                border: none; /* A cellák közötti szegélyek eltávolítása */
+                display: block; /* A cellák is blokkokként jelennek meg */
+                text-align: right; /* Az értékek jobbra igazítása */
+                padding-left: 50%; /* Hely a címkének */
+                position: relative;
+            }
+            td::before {
+                /* Oszlopfejlécek megjelenítése címkeként */
+                content: attr(data-label);
+                position: absolute;
+                left: 6px;
+                width: 45%;
+                padding-right: 10px;
+                white-space: nowrap;
+                text-align: left;
+                font-weight: bold;
+                color: #77aaff;
+            }
+            .table-btn-cell {
+                text-align: center; /* A gombot középre igazítjuk */
+                padding-left: 0; /* Nincs szükség extra paddingre a gombnál */
+            }
+            .table-btn-cell::before {
+                content: none; /* A gombnál nincs szükség címkére */
+            }
+        }
+
+    /* -- CÉLZOTT DIAGNOSZTIKAI CSS KEZDETE (IDEIGLENES!) -- */
+    /* A Foglalás gombokhoz és celláikhoz */
+    .tour-booking-btn {
+        border: 2px solid red !important; /* Piros szegély a gombokra */
+        background-color: yellow !important; /* Sárga háttér */
+        opacity: 0.8 !important; /* Enyhén átlátszó, ha esetleg takar valamit */
+    }
+
+    .table-btn-cell {
+        border: 2px dashed green !important; /* Zöld szaggatott szegély a gombot tartalmazó cellára */
+        background-color: rgba(0, 255, 0, 0.1) !important; /* Zöldes háttér */
+    }
+
+    /* A Kapcsolatfelvétel gombhoz */
+    #openContactModalBtn {
+        border: 2px solid blue !important; /* Kék szegély */
+        background-color: cyan !important; /* Cián háttér */
+        opacity: 0.8 !important;
+    }
+    /* -- CÉLZOTT DIAGNOSZTIKAI CSS VÉGE (IDEIGLENES!) -- */
     </style>
 </head>
 <body>
+<header>
+<div class="container">
+<h1>VIP Spanyolországi Terepbejárás</h1>
+<p>Megalapozott döntés ingatlanvásárlás előtt a Costa Blanca és Costa Cálida régiókban</p>
+</div>
+</header>
+<section class="hero">
+<div class="container">
+<h2>Ne vegyél zsákbamacskát!</h2>
+<p>Fedezd fel leendő otthonod környékét egy személyre szabott, stresszmentes túra keretében.</p>
+<a class="btn" href="#how-it-works-main">Tudj meg többet!</a>
+</div>
+</section>
+<section class="section" id="why-us">
+<div class="container">
+<h2>Miért érdemes minket választani?</h2>
+<p>A külföldi ingatlanvásárlás és költözés komplex folyamat. Ne bízd a véletlenre! Szakértelmünkkel időt, pénzt és idegeskedést spórolunk Neked.</p>
+<div class="features">
+<div class="feature-item">
+<h3>Pártatlan szakértelem</h3>
+<p>Mi nem ingatlant adunk el. Objektíven segítünk feltérképezni a lehetőségeket, előnyöket és hátrányokat.</p>
+</div>
+<div class="feature-item">
+<h3>40 év tapasztalat</h3>
+<p>40 éves spanyolországi tapasztalattal, ebből 15 év közvetlen Costa Blanca és Costa Cálida jelenléttel a hátunk mögött.</p>
+</div>
+<div class="feature-item">
+<h3>Teljes körű terepfelmérés</h3>
+<p>Az infrastruktúrától az egészségügyi ellátáson át az oktatásig – minden fontos információt megkapsz egy helyen.</p>
+</div>
+<div class="feature-item">
+<h3>Idő- és stresszmegtakarítás</h3>
+<p>Szervezzük, kalauzoljuk, segítjük – Csak a felfedezésre kell koncentrálni.</p>
+</div>
+<div class="feature-item">
+<h3>Kockázatminimalizálás</h3>
+<p>Egy ingatlan ára több százezer euró. Szolgáltatásunk az ingatlan értékének töredékéért segít elkerülni a drága tévedéseket.</p>
+</div>
+<div class="feature-item">
+<h3>Személyre szabott figyelem</h3>
+<p>Csomagjaink 1-2 főre szabottak, gyermekmentes környezetben, hogy minden figyelmed az igényeidre fókuszálhasson.</p>
+</div>
+</div>
+</div>
+</section>
+<section class="section how-it-works" id="how-it-works-main">
+<div class="container">
+<h2>Hogyan működik?</h2>
+<h3>Prémium szolgáltatásunk a zökkenőmentes költözés alapja.</h3>
+<p>Lépésről lépésre a tudatos döntésig.</p>
+<div class="steps">
+<div class="step">
+<span>1</span>
+<h3>Igényfelmérés online</h3>
+<p>Töltsd ki kérdőívünket, hogy jobban megismerjünk és felmérjük alap igényeidet.</p>
+</div>
+<div class="step">
+<span>2</span>
+<h3>Díjmentes telefonos konzultáció</h3>
+<p>Egy 15 perces beszélgetés, ahol tisztázzuk a kezdeti kérdéseket.</p>
+</div>
+<div class="step">
+<span>3</span>
+<h3>Fizetős online konzultáció</h3>
+<p>30 vagy 60 perces mélyebb beszélgetés, ahol részletesebben feltárjuk a lehetőségeket.</p>
+</div>
+<div class="step">
+<span>4</span>
+<h3>Prémium Terepbejárás</h3>
+<p>A személyre szabott, 4 vagy 5 napos helyszíni túra, ahol mindent megmutatunk.</p>
+</div>
+</div>
+</div>
+<div>
+<h2>Kérdőív kitöltése</h2>
+<p>Ismerje meg jobban igényeit és indítsa el spanyolországi kalandját!</p>
+<a class="btn" href="https://forms.gle/wAD3SqfYcqt2hkce6" style="margin-top: 40px;" target="_blank">Töltsd ki kérdőívünket</a>
+<h4>Tedd meg az első lépést!</h4>
+</div>
+</section>
+<section class="pricing" id="pricing">
+<div class="container">
+<h2>Csomagajánlataink</h2>
+<p>Prémium szolgáltatásunk a zökkenőmentes költözés alapja.</p>
+<div class="pricing-table">
+<div class="price-card">
+<h3>Alap Csomag</h3>
+<p class="price">3.950 €</p>
+<p>(2 főre, 4 nap / 3 éjszaka)</p>
+<ul>
+<li>Gazdaságos választás</li>
+<li>4 nap / 3 éjszaka</li>
+<li>4* szálloda félpanzióval</li>
+<li>Reptértől-reptérig transzfer</li>
+<li>Napi személyes kalauzolás</li>
+<li>Napi 2-3 ingatlan megtekintése</li>
+<li>Napközbeni étkezés és frissítők</li>
+<li>Találkozó helyi magyarokkal</li>
+<li>Spontán bónusz program &amp; ajándék</li>
+</ul>
+<a class="btn" href="#tour-dates-alap">Érdekel</a>
+</div>
+<div class="price-card">
+<h3>Bővített Csomag</h3>
+<p class="price">4.950 €</p>
+<p>(2 főre, 5 nap / 4 éjszaka)</p>
+<ul>
+<li>5 nap / 4 éjszaka</li>
+<li>4* szálloda félpanzióval</li>
+<li>Reptértől-reptérig transzfer</li>
+<li>Napi személyes kalauzolás</li>
+<li>Napi 2-3 ingatlan megtekintése</li>
+<li>Napközbeni étkezés és frissítők</li>
+<li>Találkozó helyi magyarokkal</li>
+<li>Spontán bónusz program &amp; ajándék</li>
+<li>+ 1 extra nap felfedezés</li>
+</ul>
+<a class="btn" href="#tour-dates-bovitett">Érdekel</a>
+</div>
+</div>
+</div>
+</section>
+<section class="section tour-table-section" id="tour-dates-alap">
+<div class="container">
+<h1>Alap Csomag és elérhető időpontok</h1>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr>
+<th>Csomag ID</th>
+<th>Dátum</th>
+<th>Ár</th>
+<th>Foglal</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td data-label="Csomag ID">1</td>
+<td data-label="Dátum">2025.09.14 - 09.17.</td>
+<td class="tour-table-price-cell" data-label="Ár" data-package-type="Alap Csomag"></td>
+<td class="table-btn-cell" data-label="Foglal"><button class="btn tour-booking-btn" data-date="2025.09.14 - 09.17." data-package="Alap Csomag">Foglalás</button></td>
+</tr>
+<tr>
+<td data-label="Csomag ID">2</td>
+<td data-label="Dátum">2025.09.21 - 09.24.</td>
+<td class="tour-table-price-cell" data-label="Ár" data-package-type="Alap Csomag"></td>
+<td class="table-btn-cell" data-label="Foglal"><button class="btn tour-booking-btn" data-date="2025.09.21 - 09.24." data-package="Alap Csomag">Foglalás</button></td>
+</tr>
+<tr>
+<td data-label="Csomag ID">3</td>
+<td data-label="Dátum">2025.09.28 - 10.01.</td>
+<td class="tour-table-price-cell" data-label="Ár" data-package-type="Alap Csomag"></td>
+<td class="table-btn-cell" data-label="Foglal"><button class="btn tour-booking-btn" data-date="2025.09.28 - 10.01." data-package="Alap Csomag">Foglalás</button></td>
+</tr>
+<tr>
+<td data-label="Csomag ID">4</td>
+<td data-label="Dátum">2025.10.05 - 10.08.</td>
+<td class="tour-table-price-cell" data-label="Ár" data-package-type="Alap Csomag"></td>
+<td class="table-btn-cell" data-label="Foglal"><button class="btn tour-booking-btn" data-date="2025.10.05 - 10.08." data-package="Alap Csomag">Foglalás</button></td>
+</tr>
+<tr>
+<td data-label="Csomag ID">5</td>
+<td data-label="Dátum">2025.10.12 - 10.15.</td>
+<td class="tour-table-price-cell" data-label="Ár" data-package-type="Alap Csomag"></td>
+<td class="table-btn-cell" data-label="Foglal"><button class="btn tour-booking-btn" data-date="2025.10.12 - 10.15." data-package="Alap Csomag">Foglalás</button></td>
+</tr>
+<tr>
+<td data-label="Csomag ID">6</td>
+<td data-label="Dátum">2025.10.19 - 10.22.</td>
+<td class="tour-table-price-cell" data-label="Ár" data-package-type="Alap Csomag"></td>
+<td class="table-btn-cell" data-label="Foglal"><button class="btn tour-booking-btn" data-date="2025.10.19 - 10.22." data-package="Alap Csomag">Foglalás</button></td>
+</tr>
+<tr>
+<td data-label="Csomag ID">7</td>
+<td data-label="Dátum">2025.10.26 - 10.29.</td>
+<td class="tour-table-price-cell" data-label="Ár" data-package-type="Alap Csomag"></td>
+<td class="table-btn-cell" data-label="Foglal"><button class="btn tour-booking-btn" data-date="2025.10.26 - 10.29." data-package="Alap Csomag">Foglalás</button></td>
+</tr>
+<tr>
+<td data-label="Csomag ID">8</td>
+<td data-label="Dátum">2025.11.02 - 11.05.</td>
+<td class="tour-table-price-cell" data-label="Ár" data-package-type="Alap Csomag"></td>
+<td class="table-btn-cell" data-label="Foglal"><button class="btn tour-booking-btn" data-date="2025.11.02 - 11.05." data-package="Alap Csomag">Foglalás</button></td>
+</tr>
+<tr>
+<td data-label="Csomag ID">9</td>
+<td data-label="Dátum">2025.11.09 - 11.12.</td>
+<td class="tour-table-price-cell" data-label="Ár" data-package-type="Alap Csomag"></td>
+<td class="table-btn-cell" data-label="Foglal"><button class="btn tour-booking-btn" data-date="2025.11.09 - 11.12." data-package="Alap Csomag">Foglalás</button></td>
+</tr>
+<tr>
+<td data-label="Csomag ID">10</td>
+<td data-label="Dátum">2025.11.16 - 11.19.</td>
+<td class="tour-table-price-cell" data-label="Ár" data-package-type="Alap Csomag"></td>
+<td class="table-btn-cell" data-label="Foglal"><button class="btn tour-booking-btn" data-date="2025.11.16 - 11.19." data-package="Alap Csomag">Foglalás</button></td>
+</tr>
+<tr>
+<td data-label="Csomag ID">11</td>
+<td data-label="Dátum">2025.11.23 - 11.26.</td>
+<td class="tour-table-price-cell" data-label="Ár" data-package-type="Alap Csomag"></td>
+<td class="table-btn-cell" data-label="Foglal"><button class="btn tour-booking-btn" data-date="2025.11.23 - 11.26." data-package="Alap Csomag">Foglalás</button></td>
+</tr>
+<tr>
+<td data-label="Csomag ID">12</td>
+<td data-label="Dátum">2025.11.30 - 12.03.</td>
+<td class="tour-table-price-cell" data-label="Ár" data-package-type="Alap Csomag"></td>
+<td class="table-btn-cell" data-label="Foglal"><button class="btn tour-booking-btn" data-date="2025.11.30 - 12.03." data-package="Alap Csomag">Foglalás</button></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</section>
+<section class="section tour-table-section" id="tour-dates-bovitett">
+<div class="container">
+<h1>Bővített Csomag és elérhető időpontok</h1>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr>
+<th>Csomag ID</th>
+<th>Dátum</th>
+<th>Ár</th>
+<th>Foglal</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td data-label="Csomag ID">13</td>
+<td data-label="Dátum">2025.09.14 - 09.18.</td>
+<td class="tour-table-price-cell" data-label="Ár" data-package-type="Bővített Csomag"></td>
+<td class="table-btn-cell" data-label="Foglal"><button class="btn tour-booking-btn" data-date="2025.09.14 - 09.18." data-package="Bővített Csomag">Foglalás</button></td>
+</tr>
+<tr>
+<td data-label="Csomag ID">14</td>
+<td data-label="Dátum">2025.09.21 - 09.25.</td>
+<td class="tour-table-price-cell" data-label="Ár" data-package-type="Bővített Csomag"></td>
+<td class="table-btn-cell" data-label="Foglal"><button class="btn tour-booking-btn" data-date="2025.09.21 - 09.25." data-package="Bővített Csomag">Foglalás</button></td>
+</tr>
+<tr>
+<td data-label="Csomag ID">15</td>
+<td data-label="Dátum">2025.09.28 - 10.02.</td>
+<td class="tour-table-price-cell" data-label="Ár" data-package-type="Bővített Csomag"></td>
+<td class="table-btn-cell" data-label="Foglal"><button class="btn tour-booking-btn" data-date="2025.09.28 - 10.02." data-package="Bővített Csomag">Foglalás</button></td>
+</tr>
+<tr>
+<td data-label="Csomag ID">16</td>
+<td data-label="Dátum">2025.10.05 - 10.09.</td>
+<td class="tour-table-price-cell" data-label="Ár" data-package-type="Bővített Csomag"></td>
+<td class="table-btn-cell" data-label="Foglal"><button class="btn tour-booking-btn" data-date="2025.10.05 - 10.09." data-package="Bővített Csomag">Foglalás</button></td>
+</tr>
+<tr>
+<td data-label="Csomag ID">17</td>
+<td data-label="Dátum">2025.10.12 - 10.16.</td>
+<td class="tour-table-price-cell" data-label="Ár" data-package-type="Bővített Csomag"></td>
+<td class="table-btn-cell" data-label="Foglal"><button class="btn tour-booking-btn" data-date="2025.10.12 - 10.16." data-package="Bővített Csomag">Foglalás</button></td>
+</tr>
+<tr>
+<td data-label="Csomag ID">18</td>
+<td data-label="Dátum">2025.10.19 - 10.23.</td>
+<td class="tour-table-price-cell" data-label="Ár" data-package-type="Bővített Csomag"></td>
+<td class="table-btn-cell" data-label="Foglal"><button class="btn tour-booking-btn" data-date="2025.10.19 - 10.23." data-package="Bővített Csomag">Foglalás</button></td>
+</tr>
+<tr>
+<td data-label="Csomag ID">19</td>
+<td data-label="Dátum">2025.10.26 - 10.30.</td>
+<td class="tour-table-price-cell" data-label="Ár" data-package-type="Bővített Csomag"></td>
+<td class="table-btn-cell" data-label="Foglal"><button class="btn tour-booking-btn" data-date="2025.10.26 - 10.30." data-package="Bővített Csomag">Foglalás</button></td>
+</tr>
+<tr>
+<td data-label="Csomag ID">20</td>
+<td data-label="Dátum">2025.11.02 - 11.06.</td>
+<td class="tour-table-price-cell" data-label="Ár" data-package-type="Bővített Csomag"></td>
+<td class="table-btn-cell" data-label="Foglal"><button class="btn tour-booking-btn" data-date="2025.11.02 - 11.06." data-package="Bővített Csomag">Foglalás</button></td>
+</tr>
+<tr>
+<td data-label="Csomag ID">21</td>
+<td data-label="Dátum">2025.11.09 - 11.13.</td>
+<td class="tour-table-price-cell" data-label="Ár" data-package-type="Bővített Csomag"></td>
+<td class="table-btn-cell" data-label="Foglal"><button class="btn tour-booking-btn" data-date="2025.11.09 - 11.13." data-package="Bővített Csomag">Foglalás</button></td>
+</tr>
+<tr>
+<td data-label="Csomag ID">22</td>
+<td data-label="Dátum">2025.11.16 - 11.20.</td>
+<td class="tour-table-price-cell" data-label="Ár" data-package-type="Bővített Csomag"></td>
+<td class="table-btn-cell" data-label="Foglal"><button class="btn tour-booking-btn" data-date="2025.11.16 - 11.20." data-package="Bővített Csomag">Foglalás</button></td>
+</tr>
+<tr>
+<td data-label="Csomag ID">23</td>
+<td data-label="Dátum">2025.12.01 - 12.05.</td>
+<td class="tour-table-price-cell" data-label="Ár" data-package-type="Bővített Csomag"></td>
+<td class="table-btn-cell" data-label="Foglal"><button class="btn tour-booking-btn" data-date="2025.12.01 - 12.05." data-package="Bővített Csomag">Foglalás</button></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</section>
+<div class="modal-overlay" id="bookingFormModal">
+<div class="modal-content">
+<span class="modal-close" onclick="document.getElementById('bookingFormModal').style.display='none'">✖</span>
+<h2>Foglalás megerősítése és adatok megadása</h2>
+<p>Ön a következő turnust választotta:</p>
+<p><strong>Dátum:</strong> <span id="selectedTourDate"></span></p>
+<p><strong>Csomag:</strong> <span id="selectedPackageType"></span></p>
+<p><strong>Ár:</strong> <span id="selectedTourPrice"></span></p>
+<form action="[IDE JÖN A BANKKÁRTYÁS FIZETÉSI TERMINÁL URL-JE]" id="modalBookingForm" method="POST">
+<input id="hiddenTourDateInput" name="tourDate" type="hidden"/>
+<input id="hiddenPackageTypeInput" name="packageType" type="hidden"/>
+<input id="hiddenTourPriceInput" name="tourPrice" type="hidden"/>
+<label for="fullName">Teljes név:</label>
+<input id="fullName" name="fullName" placeholder="Pl. Kovács János" required="" type="text"/>
+<label for="email">E-mail cím:</label>
+<input id="email" name="email" placeholder="pl. pelda@email.com" required="" type="email"/>
+<label for="country">Ország:</label>
+<input id="country" name="country" placeholder="Pl. Magyarország" required="" type="text"/>
+<label for="city">Helység:</label>
+<input id="city" name="city" placeholder="Pl. Budapest" required="" type="text"/>
+<label for="address">Utca, házszám:</label>
+<input id="address" name="address" placeholder="Pl. Petőfi utca 12." required="" type="text"/>
+<div class="checkbox-container">
+<input id="termsAccepted" name="termsAccepted" required="" type="checkbox"/>
+<label for="termsAccepted">Elfogadom a foglalási feltételeket</label>
+</div>
+<button type="submit">Fizetés</button>
+<p class="small-text">* A "Fizetés" gomb egy biztonságos bankkártyás fizetési felületre fog mutatni.</p>
+</form>
+</div>
+</div>
+<div class="modal-overlay" id="contactFormModal">
+<div class="modal-content">
+<span class="modal-close">✖</span>
+<h2>Kapcsolatfelvétel</h2>
+<p>Kérjük, töltsd ki az alábbi űrlapot, és hamarosan felvesszük veled a kapcsolatot.</p>
+<form action="[IDE JÖN AZ ŰRLAPKEZELŐ URL-JE, pl. Formspree/Netlify Forms]" id="contactForm" method="POST">
+<label for="contactName">Teljes név:</label>
+<input id="contactName" name="contactName" placeholder="Pl. Kovács János" required="" type="text"/>
+<label for="contactEmail">E-mail cím:</label>
+<input id="contactEmail" name="contactEmail" placeholder="pl. pelda@email.com" required="" type="email"/>
+<label for="contactTel">Telefonszám:</label>
+<input id="contactTel" name="contactTel" placeholder="pl. + 36 20 123 4567" required="" type="Tel"/>
+<label for="contactMessage">Üzenet:</label>
+<textarea id="contactMessage" name="contactMessage" placeholder="Írd ide kérdésed, vagy üzenetedet..." required="" rows="5"></textarea>
+<button id="contactButton" type="submit">Üzenet küldése</button>
+</form>
+</div>
+</div>
+<div class="modal-overlay" id="privacyPolicyModal">
+<div class="modal-content">
+<span class="modal-close">✖</span>
+<h2>Adatvédelmi és Cookie Szabályzat</h2>
+<p>Ez a dokumentum tájékoztatja Önt arról, hogyan kezeljük személyes adatait és milyen cookie-kat használunk weboldalunkon. Kérjük, figyelmesen olvassa el!</p>
+<h3>Adatkezelés</h3>
+<p>A VIP Spanyolországi Terepbejárás (Adatkezelő) elkötelezett az Ön személyes adatainak védelme iránt. Az Ön által megadott személyes adatokat kizárólag az Önnel való kapcsolattartás, a szolgáltatásaink nyújtása, valamint a foglalások és üzenetek feldolgozása céljából gyűjtjük és kezeljük. Harmadik félnek az Ön hozzájárulása nélkül nem adjuk át adatait, kivéve, ha erre jogszabály kötelez minket.</p>
+<ul>
+<li>**Kapcsolatfelvételi űrlap:** Az űrlapon megadott név, e-mail cím, telefonszám, üzenet tartalom.</li>
+<li>**Foglalási űrlap:** Az űrlapon megadott név, e-mail cím, ország, város, utca, házszám, kiválasztott csomag és dátum.</li>
+</ul>
+<p>Az adatok tárolása az EmailJS szolgáltatón keresztül történik az Ön hozzájárulásával. Önnek joga van az adataihoz hozzáférni, azokat módosítani vagy törölni. Kérjük, ezirányú kérését jelezze a [ide jön az e-mail cím, pl. info@domain.com] e-mail címen.</p>
+<h3>Cookie-k (Sütik) használata</h3>
+<p>Weboldalunk cookie-kat használ a felhasználói élmény javítása és a weboldal működésének elemzése érdekében. A cookie-k kis szöveges fájlok, amelyeket a böngészője tárol az Ön eszközén.</p>
+<p>Weboldalunk a következő típusú cookie-kat használja:</p>
+<ul>
+<li>**Munkamenet cookie-k:** Ezek ideiglenes cookie-k, amelyek a böngésző bezárásakor törlődnek. Ezek nélkülözhetetlenek a weboldal alapvető funkcióinak működéséhez.</li>
+<li>**Analitikai cookie-k:** (Pl. Google Analytics – ha használsz ilyet, különben törölhető) Ezek segítenek nekünk megérteni, hogyan használják a látogatók a weboldalt, így fejleszteni tudjuk azt.</li>
+</ul>
+<p>A legtöbb böngésző alapértelmezetten engedélyezi a cookie-k használatát, de Ön módosíthatja böngészője beállításait, hogy visszautasítsa a cookie-kat, vagy figyelmeztetést kapjon, mielőtt cookie-kat tárolna az eszköze. Felhívjuk figyelmét, hogy a cookie-k letiltása befolyásolhatja weboldalunk egyes funkcióinak működését.</p>
+<p>Ezen szabályzat bármikor módosulhat. A módosításokról ezen az oldalon tájékozódhat.</p>
+</div>
+</div>
+<section class="section" id="questionnaire-section">
+<div class="container">
+<p style="margin-top: 20px;">Ha közvetlenül szeretnél kapcsolatba lépni velünk, használd a lenti gombot:</p>
+<button class="btn" id="openContactModalBtn">Kapcsolatfelvétel</button>
+</div>
+</section>
+<footer>
+<div class="container">
+<p>© 2025 VIP Spanyolországi Terepbejárás. Minden jog fenntartva.</p>
+<div class="contact-info">
+<p>Impresszum | <a href="#" id="openPrivacyModalBtn">Adatvédelmi nyilatkozat</a></p>
+</div>
+</div>
+</footer>
+<script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js" type="text/javascript" defer></script>
+<script type="text/javascript">
+    document.addEventListener('DOMContentLoaded', function() {
+        emailjs.init('Pi8bBAb-9NUxOTkF1'); // A te Public Key-d
 
-    <button class="test-btn" id="myTestButton">Kattints rám!</button>
+        const btn = document.getElementById('contactButton');
+        const form = document.getElementById('contactForm'); // A form elem referenciája
 
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            const button = document.getElementById('myTestButton');
-            if (button) {
-                button.addEventListener('click', function() {
-                    alert('Teszt gomb működik a G41-en!');
-                });
-            } else {
-                alert('Hiba: A teszt gomb nem található a DOM-ban.');
+        if (form) { // Ellenőrizzük, hogy az űrlap létezik-e
+            form.addEventListener('submit', function(event) {
+                event.preventDefault(); // Megakadályozza az űrlap alapértelmezett HTML beküldését
+                alert('Kapcsolatfelvétel gomb kattintás érzékelve a G41-en!'); // DIAGNOSZTIKAI CÉLÚ ALERT
+                btn.textContent = 'Küldés...';
+
+                const serviceID = 'service_0mkavr2'; // A te Service ID-d
+                const templateID = 'template_oxjexwn'; // A te Template ID-d
+
+                emailjs.sendForm(serviceID, templateID, this)
+                    .then(() => {
+                        btn.textContent = 'Üzenet küldése';
+                        alert('Email elküldve sikeresen!');
+                        form.reset(); // Űrlap törlése a sikeres küldés után
+                        const contactFormModal = document.getElementById('contactFormModal');
+                        if (contactFormModal) {
+                            contactFormModal.style.display = 'none';
+                        }
+                    }, (err) => {
+                        btn.textContent = 'Üzenet küldése';
+                        console.error('Hiba történt az email küldésekor:', err); // Részletesebb hibaüzenet a konzolra
+                        alert('Hiba történt az email küldésekor. Kérjük, próbáld újra később, vagy vedd fel velünk a kapcsolatot közvetlenül.');
+                    });
+            });
+        }
+
+        // Központi árdefiníció
+        const packagePrices = {
+            "Alap Csomag": "3.950 €",
+            "Bővített Csomag": "4.950 €"
+        };
+
+        // Árak feltöltése a táblázatba
+        document.querySelectorAll('.tour-table-price-cell').forEach(cell => {
+            const packageType = cell.dataset.packageType;
+            if (packagePrices[packageType]) {
+                cell.textContent = packagePrices[packageType];
             }
         });
-    </script>
 
+        // Árak beállítása a "Foglalás" gombok data-price attribútumába
+        document.querySelectorAll('.tour-booking-btn').forEach(btn => {
+            const packageType = btn.dataset.package;
+            if (packagePrices[packageType]) {
+                btn.dataset.price = packagePrices[packageType];
+            }
+        });
+
+        // Modális ablak logikája (foglalás)
+        const tourBookingButtons = document.querySelectorAll('.tour-booking-btn');
+        const bookingModal = document.getElementById('bookingFormModal');
+        const selectedTourDateSpan = document.getElementById('selectedTourDate');
+        const selectedPackageTypeSpan = document.getElementById('selectedPackageType');
+        const selectedTourPriceSpan = document.getElementById('selectedTourPrice');
+        const hiddenTourDateInput = document.getElementById('hiddenTourDateInput');
+        const hiddenPackageTypeInput = document.getElementById('hiddenPackageTypeInput');
+        const hiddenTourPriceInput = document.getElementById('hiddenTourPriceInput');
+
+        tourBookingButtons.forEach(btn => {
+            btn.addEventListener('click', function(e) {
+                e.preventDefault();
+                alert('Foglalás gomb kattintás érzékelve a G41-en!'); // DIAGNOSZTIKAI CÉLÚ ALERT
+                const date = this.dataset.date;
+                const packageType = this.dataset.package;
+                const price = this.dataset.price;
+
+                selectedTourDateSpan.textContent = date;
+                selectedPackageTypeSpan.textContent = packageType;
+                selectedTourPriceSpan.textContent = price;
+
+                hiddenTourDateInput.value = date;
+                hiddenPackageTypeInput.value = packageType;
+                hiddenTourPriceInput.value = price;
+
+                bookingModal.style.display = 'flex'; // Modális ablak megjelenítése
+            });
+        });
+
+        // Modális ablak bezárása az overlayre kattintva vagy X gombbal
+        if (bookingModal) {
+            bookingModal.addEventListener('click', function(e) {
+                if (e.target === bookingModal || e.target.classList.contains('modal-close')) {
+                    bookingModal.style.display = 'none';
+                }
+            });
+        }
+
+        // Kezeljük a Foglalás űrlap beküldését
+        const modalBookingForm = document.getElementById('modalBookingForm');
+
+        if (modalBookingForm) {
+            modalBookingForm.addEventListener('submit', function(event) {
+                event.preventDefault(); // Megakadályozza az űrlap alapértelmezett HTML beküldését (így nem irányít át rögtön a VPOS-ra)
+
+                // Értékek lekérése az űrlapról és a modális ablakból
+                const tourDate = document.getElementById('selectedTourDate').textContent;
+                const packageType = document.getElementById('selectedPackageType').textContent;
+                const tourPrice = document.getElementById('selectedTourPrice').textContent;
+                const fullName = document.getElementById('fullName').value;
+                const email = document.getElementById('email').value;
+
+                const country = document.getElementById('country').value;
+                const city = document.getElementById('city').value;
+                const address = document.getElementById('address').value;
+                const termsAccepted = document.getElementById('termsAccepted').checked;
+
+                if (!termsAccepted) {
+                    alert('Kérjük, fogadja el a foglalási feltételeket a folytatáshoz.');
+                    return;
+                }
+
+                // Itt add meg az ÚJ, Foglalás visszaigazolásra szánt EmailJS sablon ID-ját
+                const bookingTemplateID = 'template_rdv3ygd'; // <<< IDE ÍRD BE AZ ÚJ SABLON ID-JÉT!
+
+                // Paraméterek előkészítése az EmailJS-hez
+                const templateParams = {
+                    tour_date: tourDate,
+                    package_type: packageType,
+                    tour_price: tourPrice,
+                    full_name: fullName,
+                    user_email: email, // Fontos: ide írd a felhasználó e-mail címét, ha ő is kapja az e-mailt!
+                    // user_Tel.: Tel, // Nincs "Tel" változó definiálva a JavaScriptben.
+                    user_country: country,
+                    user_city: city,
+                    user_address: address,
+                    // Ide adhatsz hozzá további mezőket, amiket a sablonodban használsz
+                };
+
+                // Gomb állapotának frissítése (opcionális)
+                const submitButton = modalBookingForm.querySelector('button[type="submit"]');
+                const originalButtonText = submitButton.textContent;
+                submitButton.textContent = 'Foglalás küldése...';
+                submitButton.disabled = true;
+
+                // E-mail küldése az EmailJS-en keresztül
+                emailjs.send('service_0mkavr2', bookingTemplateID, templateParams) // A service_0mkavr2 a már meglévő Service ID-d
+                    .then(() => {
+                        alert('Foglalási adatok elküldve! Most átirányítjuk a fizetési oldalra.');
+                        
+                        // Gomb állapotának visszaállítása
+                        submitButton.textContent = originalButtonText;
+                        submitButton.disabled = false;
+
+                        // Modális ablak bezárása az e-mail küldése után, de még az átirányítás előtt
+                        const bookingModal = document.getElementById('bookingFormModal');
+                        if (bookingModal) {
+                            bookingModal.style.display = 'none';
+                        }
+
+                        // Átirányítás a bankkártyás fizetési terminálra
+                        // FONTOS: Győződj meg róla, hogy a modalBookingForm.action attribútum a VPOS linkre mutat!
+                        window.location.href = modalBookingForm.action;
+                    }, (err) => {
+                        console.error('Hiba történt a foglalási email küldésekor:', err);
+                        alert('Hiba történt a foglalási email küldésekor. Kérjük, próbálja újra.');
+                        
+                        // Gomb állapotának visszaállítása hiba esetén is
+                        submitButton.textContent = originalButtonText;
+                        submitButton.disabled = false;
+                    });
+            });
+        }
+        
+        // Kapcsolatfelvételi Modális Ablak Logikája
+        const openContactModalBtn = document.getElementById('openContactModalBtn');
+        const contactFormModal = document.getElementById('contactFormModal');
+        const contactModalCloseBtn = contactFormModal ? contactFormModal.querySelector('.modal-close') : null;
+
+        if (openContactModalBtn) {
+            openContactModalBtn.addEventListener('click', function(e) {
+                e.preventDefault();
+                if (contactFormModal) {
+                    contactFormModal.style.display = 'flex';
+                }
+            });
+        }
+
+        if (contactFormModal) {
+            contactFormModal.addEventListener('click', function(e) {
+                if (e.target === contactFormModal) {
+                    contactFormModal.style.display = 'none';
+                }
+            });
+        }
+        if (contactModalCloseBtn) {
+            contactModalCloseBtn.addEventListener('click', function() {
+                if (contactFormModal) {
+                    contactFormModal.style.display = 'none';
+                }
+            });
+        }
+
+        // ÚJ: Adatvédelmi és Cookie Szabályzat Modális Ablak Logikája
+        const openPrivacyModalBtn = document.getElementById('openPrivacyModalBtn');
+        const privacyPolicyModal = document.getElementById('privacyPolicyModal');
+        const privacyModalCloseBtn = privacyPolicyModal ? privacyPolicyModal.querySelector('.modal-close') : null;
+
+        if (openPrivacyModalBtn) {
+            openPrivacyModalBtn.addEventListener('click', function(e) {
+                e.preventDefault();
+                if (privacyPolicyModal) {
+                    privacyPolicyModal.style.display = 'flex';
+                }
+            });
+        }
+
+        if (privacyPolicyModal) {
+            privacyPolicyModal.addEventListener('click', function(e) {
+                if (e.target === privacyPolicyModal) {
+                    privacyPolicyModal.style.display = 'none';
+                }
+            });
+        }
+        if (privacyModalCloseBtn) {
+            privacyModalCloseBtn.addEventListener('click', function() {
+                if (privacyPolicyModal) {
+                    privacyPolicyModal.style.display = 'none';
+                }
+            });
+        }
+
+        // ESC billentyűvel való bezárás (mindhárom modálra)
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') {
+                if (bookingModal && bookingModal.style.display === 'flex') {
+                    bookingModal.style.display = 'none';
+                }
+                if (contactFormModal && contactFormModal.style.display === 'flex') {
+                    contactFormModal.style.display = 'none';
+                }
+                if (privacyPolicyModal && privacyPolicyModal.style.display === 'flex') {
+                    privacyPolicyModal.style.display = 'none';
+                }
+            }
+        });
+    });
+</script>
 </body>
 </html>
