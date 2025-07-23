@@ -258,7 +258,15 @@
             align-items: center;
             justify-content: center;
         }
-        .modal-content {
+        .modal-close {
+            position:absolute;
+            top:10px;
+            right:20px;
+            cursor:pointer;
+            font-size:1.5em;
+            color: #333;
+        }            
+         .modal-content {
             background:#fff;
             width:90%;
             max-width:500px;
@@ -269,15 +277,8 @@
             text-align: left;
             max-height: 80vh; /* Maximális magasság a görgetéshez */
             overflow-y: auto; /* Görgetés, ha a tartalom hosszabb, mint a modál */
-        }
-        .modal-close {
-            position:absolute;
-            top:10px;
-            right:20px;
-            cursor:pointer;
-            font-size:1.5em;
-            color: #333;
-        }
+        }           
+        
         .modal-content h2 {
             text-align: center;
             margin-bottom: 25px;
@@ -397,7 +398,7 @@
                 width: 98%;
                 max-width: 99vw;
                 padding: 10px;
-    }
+            }
 
             /* Reszponzív táblázat "kártya" nézet */
             .table-wrapper {
@@ -778,10 +779,10 @@
         <a href="#" id="bookingPrivacyLink">adatvédelmi nyilatkozatot</a>
     </label>
 </div>
+ </form>
             </div>
             <button type="submit">Fizetés</button>
             <p class="small-text">* A "Fizetés" gomb egy biztonságos bankkártyás fizetési felületre fog mutatni.</p>
-    
 </div>
 <div class="modal-overlay" id="contactFormModal">
     <div class="modal-content">
