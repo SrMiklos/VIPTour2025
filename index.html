@@ -393,11 +393,12 @@
                 max-width: 350px;
                 padding: 20px;
             }
-            .modal-content {
+	.modal-content {
                 margin: 5% auto;
-                width: 98%;
-                max-width: 99vw;
+                width: calc(98% - 20px); /* Kiszámítja a 100% szélességet, levonva a paddinget */
+                max-width: 500px; /* Egyértelmű maximális szélesség beállítása, ha van rá hely */
                 padding: 10px;
+                box-sizing: border-box; /* Fontos! Biztosítja, hogy a padding beleszámítson a widthbe */
             }
 
             /* Reszponzív táblázat "kártya" nézet */
@@ -771,18 +772,16 @@
             <label for="address">Utca, házszám:</label>
             <input id="address" name="address" placeholder="Pl. Petőfi utca 12." required="" type="text"/>
             <div class="checkbox-container">
-    <input id="termsAccepted" name="termsAccepted" required="" type="checkbox"/>
-    <label for="termsAccepted">
-        Elfogadom a 
-        <a href="Foglalási feltételek.pdf" target="_blank">foglalási feltételeket</a>
-        és az 
-        <a href="#" id="bookingPrivacyLink">adatvédelmi nyilatkozatot</a>
-    </label>
+             <input id="termsAccepted" name="termsAccepted" required="" type="checkbox"/>
+            <label for="termsAccepted">Elfogadom a  <a href="Foglalási feltételek.pdf" target="_blank">foglalási feltételeket</a>
+            <br>és az 
+            <a href="#" id="bookingPrivacyLink">adatvédelmi nyilatkozatot</a></label>
+
 </div>
- </form>
-            </div>
             <button type="submit">Fizetés</button>
             <p class="small-text">* A "Fizetés" gomb egy biztonságos bankkártyás fizetési felületre fog mutatni.</p>
+        </form>
+    </div>
 </div>
 <div class="modal-overlay" id="contactFormModal">
     <div class="modal-content">
@@ -802,7 +801,6 @@
         </form>
     </div>
 </div>
-
 <div class="modal-overlay" id="privacyPolicyModal">
     <div class="modal-content">
         <span class="modal-close">✖</span>
